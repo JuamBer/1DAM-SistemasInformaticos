@@ -1,0 +1,39 @@
+#!/bin/bash
+
+IFS=","
+PS3="Selecciona una opción: "
+
+
+borrarUsuarios(){
+    while read firstname lastname userid
+    do
+        userdel -r ${userid} > /dev/null
+        echo "Borrando usuarios: \nUsuario: ${userid}" >> resultado.txt
+    done < user.csv
+}
+añadirUsuarios(){
+    while read firstname lastname userid
+    do
+        PS=$(openssl passwd ${firstname})
+        useradd -c "${firstname} ${lastname}" -m -p $PS -d /home/"${userid}" -s /bin/bash "${userid}"
+        chage -d 0 ${userid}
+        echo "Añadiendo usuarios: \nUsuario: ${userid} – Contraseña cifrada: $PS ....." >> resultado.txt
+    done < user.csv
+}
+
+
+select op in borrarUsuarios añadirUsuarios salir
+do    
+    case $op in
+        borrarUsuarios) 
+            borrarUsuarios
+            ;;
+        añadirUsuarios) 
+            añadirUsuarios
+            ;;
+        salir) 
+            exit
+            ;;
+    esac
+done
+

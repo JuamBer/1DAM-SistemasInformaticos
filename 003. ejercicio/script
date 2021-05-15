@@ -1,0 +1,19 @@
+#!/bin/bash
+
+existe=0
+IFS=":"
+
+while read user x id idgrupo grupo directorio shell
+do
+    if [ $1 = $user ] 
+    then
+        existe=1
+    fi
+done < /etc/passwd
+
+if [ $existe -eq 1 ]
+then 
+    echo "$1 Está registrado en el sistema"
+else
+    echo "$1 No está registrado en el sistema"
+fi

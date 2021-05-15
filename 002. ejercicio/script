@@ -1,0 +1,15 @@
+#!/bin/bash
+
+
+if [ $1 = "verde" ]
+then    
+    echo "Pasa"
+
+else
+    if [ $1 = "ambar" ]
+    then
+        echo "Ve parando"
+    else 
+        echo "Para"
+    fi
+fi

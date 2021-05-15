@@ -1,0 +1,17 @@
+#!/bin/bash
+
+IFS=":"
+
+while read user x id idgrupo grupo directorio shell
+do
+    if [ $id -ge 1000 ] 
+    then
+        if [ -n $shell ]
+        then
+            echo "Usuario: ${user} – ID: ${id} – Shell: ${shell}" >> resultado.txt
+        else 
+            shell = "/bin/bash"
+            echo "Usuario: ${user} – ID: ${id} – Shell: ${shell}" >> resultado.txt
+        fi
+    fi
+done < /etc/passwd

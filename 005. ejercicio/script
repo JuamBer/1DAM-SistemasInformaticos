@@ -1,0 +1,28 @@
+#!/bin/bash
+
+buscar(){
+    for f in $1; do
+            echo "File -> $f"
+    done
+}
+
+select op in BuscarPNG BuscaTXT QueComienzePor Salir
+do    
+    case $op in
+        BuscarPNG) 
+            buscar "*.png"
+            ;;
+        BuscaTXT) 
+            buscar "*.txt"
+            ;;
+        QueComienzePor) 
+            echo "¿Por que quieres que empieze? "
+            read var
+            buscar "$var*"
+            ;;
+        Salir) 
+            exit
+            ;;
+    esac
+done
+

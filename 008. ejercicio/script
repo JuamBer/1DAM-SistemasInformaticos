@@ -1,0 +1,10 @@
+#!/bin/bash
+let i=0
+echo "Intrudce el númerod de veces: "
+read var
+
+while [ $i -lt $var ]
+do
+    date
+    let i++;
+done 

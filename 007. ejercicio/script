@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ "$#" -ne 2 ]
+then
+    echo "Tienes que pasar dos argumentos"
+else 
+    echo "Has pasado 2 argumentos: $1, $2"
+fi

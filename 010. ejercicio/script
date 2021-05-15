@@ -1,0 +1,46 @@
+#!/bin/bash
+
+BorrarArchivo(){
+    echo "Lista de archivos:"
+    ls
+    echo "¿Qué archivo quieres eliminar?"
+    read doc
+
+    if [ -f $doc ];
+    then
+        select op in Borrar Cancelar
+        do    
+            case $op in
+                Borrar) 
+                    mv $doc "/home/juamber/Escritorio/010. Scripts/002. Ejercicios/010. ejercicio/papelera/"
+                    menu
+                    ;;
+                Cancelar) 
+                    echo "Operación cancelada"
+                    menu
+                    ;;
+            esac
+        done
+    else
+        echo "No existe el archivo "$doc""
+        BorrarArchivo
+    fi
+}
+
+menu(){
+select op in BorrarArchivo Cancelar
+do
+    
+    case $op in
+        BorrarArchivo) 
+            BorrarArchivo
+            ;;
+        Cancelar) 
+        echo "Adios"
+            exit
+            ;;
+    esac
+done
+}
+
+menu

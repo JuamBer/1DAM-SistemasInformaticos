@@ -1,0 +1,40 @@
+#!/bin/bash
+
+ComprobarExistenciaDeCadena(){
+
+    echo "Introduce una cadena: "
+    read cad
+
+    if [ -f $cad ];
+    then
+        echo ""$cad" Existe como archivo"
+        menu
+    else
+        if [ -d $cad ];
+        then
+            echo ""$cad" Existe como directorio"
+            menu
+        else
+            echo "No existe ningún archivo/carpeta llamado "$cad""
+            menu
+        fi
+    fi
+}
+
+menu(){
+select op in ComprobarExistenciaDeCadena Salir
+do
+    
+    case $op in
+        ComprobarExistenciaDeCadena) 
+            ComprobarExistenciaDeCadena
+            ;;
+        Salir) 
+        echo "Adios"
+            exit
+            ;;
+    esac
+done
+}
+
+menu 
